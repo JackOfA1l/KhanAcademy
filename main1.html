@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Content Production Plan - Grades 6-10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #3498db, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #555;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(45deg, #3498db, #8e44ad);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #3498db, #8e44ad);
+            border-radius: 2px;
+        }
+
+        .assumptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .assumption-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .assumption-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .assumption-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .grade-bands {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .grade-band {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .foundation-band {
+            border-color: #27ae60;
+        }
+
+        .application-band {
+            border-color: #e74c3c;
+        }
+
+        .band-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .foundation-band .band-title {
+            color: #27ae60;
+        }
+
+        .application-band .band-title {
+            color: #e74c3c;
+        }
+
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-table th {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 8px 6px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.75em;
+            white-space: nowrap;
+        }
+
+        .content-table td {
+            padding: 8px 6px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-size: 0.8em;
+            white-space: nowrap;
+        }
+
+        .content-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .content-table tr:hover {
+            background: #e3f2fd;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .budget-summary {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .budget-amount {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .budget-label {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .budget-table th {
+            background: linear-gradient(45deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .budget-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .budget-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .tradeoffs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .tradeoff-card {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .tradeoff-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .timeline-container {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .timeline-stat {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #3498db, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .grade-bands {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-table {
+                font-size: 0.8em;
+            }
+            
+            .budget-amount {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Educational Content Production Plan</h1>
+            <p>Comprehensive budget and timeline for creating Science and Mathematics content for Grades 6-10, aligned with NCERT curriculum standards</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('overview')">Overview</button>
+            <button class="nav-tab" onclick="showSection('assumptions')">Key Assumptions</button>
+            <button class="nav-tab" onclick="showSection('content')">Content Breakdown</button>
+            <button class="nav-tab" onclick="showSection('budget')">Budget Analysis</button>
+            <button class="nav-tab" onclick="showSection('tradeoffs')">Tradeoffs</button>
+            <button class="nav-tab" onclick="showSection('timeline')">Timeline</button>
+            <button class="nav-tab" onclick="showSection('stretch')">Stretch</button>
+        </div>
+
+        <div id="overview" class="content-section active">
+            <h2 class="section-title">Project Overview</h2>
+            
+            <div class="assumptions-grid">
+                <div class="assumption-card">
+                    <div class="assumption-title">🎯 Project Goal</div>
+                    <p>Create comprehensive Science and Mathematics content (videos and exercises) for Grades 6-10, following Khan Academy's proven pedagogical approach with voice-over and digital illustrations.</p>
+                </div>
+                
+                <div class="assumption-card">
+                    <div class="assumption-title">📚 Curriculum Alignment</div>
+                    <p>Strictly aligned with NCERT syllabus ensuring national relevance and compatibility with state boards across India.</p>
+                </div>
+                
+                <div class="assumption-card">
+                    <div class="assumption-title">🎬 Content Format</div>
+                    <p>Khan Academy style videos with voice-over, digital writing/drawing, plus comprehensive practice sets and formative quizzes.</p>
+                </div>
+                
+                <div class="assumption-card">
+                    <div class="assumption-title">🌍 Language & Scope</div>
+                    <p>Content developed in English for Phase I and all materials created from scratch with focus on diverse learning needs.</p>
+                </div>
+            </div>
+
+            <div class="budget-summary">
+                <div class="budget-amount">₹19,53,900</div>
+                <div class="budget-label">Total Project Budget</div>
+            </div>
+
+            <div class="timeline-container">
+                <h3 style="margin-bottom: 20px; font-size: 1.5em;">Project Timeline</h3>
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <span class="stat-number">6.5-7</span>
+                        <span class="stat-label">Months</span>
+                    </div>
+                    <div class="timeline-stat">
+                        <span class="stat-number">4,940</span>
+                        <span class="stat-label">Total Hours Required</span>
+                    </div>
+                    <div class="timeline-stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Team Members</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="assumptions" class="content-section">
+            <h2 class="section-title">Key Assumptions</h2>
+            
+            <div class="assumptions-grid">
+                <div class="assumption-card">
+                    <div class="assumption-title">Content Scope</div>
+                    <ul style="margin-left: 20px;">
+                        <li>All content created from scratch</li>
+                        <li>Khan Academy style videos with voice-over and digital writing/drawing on screen.</li>
+                        <li>Strict NCERT curriculum alignment.</li>
+                        <li>English language only for Phase 1.</li>
+                    </ul>
+                </div>
+                
+                <div class="assumption-card">
+                    <div class="assumption-title">Cognitive Load by Grade</div>
+                    <p><strong>Higher Grades (9-10):</strong> Deeper conceptual explanations, application-oriented examples, varied question formats.</p>
+                    <p><strong>Lower Grades (6-8):</strong> Focus on concept introduction and foundational understanding.</p>
+                </div>
+                
+                <div class="assumption-card">
+                    <div class="assumption-title">Extra Materials</div>
+                    <p><strong>Grade 10 Board Preparation:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Additional quizzes</li>
+                        <li>Board-oriented exercises</li>
+                        <li>Previous year questions (PYQs)</li>
+                        <li>Multiple choice questions (MCQs)</li>
+                    </ul>
+                </div>
+                
+                <div class="assumption-card">
+                    <div class="assumption-title">Time Requirements</div>
+                    <p><strong>Video Creation:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Grades 6-8: 3.5 to 4.5 hours</li>
+                        <li>Grades 9-10: 5 to 5.75 hours</li>
+                    </ul>
+                    <p><strong>Practice Set/Quiz:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Grades 6-8: 5 to 6 hours</li>
+                        <li>Grades 9-10: 6 to 7 hours</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="content" class="content-section">
+            <h2 class="section-title">Content Breakdown</h2>
+            
+            <div class="grade-bands">
+                <div class="grade-band foundation-band">
+                    <div class="band-title">Foundation Band (Grades 6-8)</div>
+                    <p style="margin-bottom: 20px; text-align: center; color: #666;">Focus on concept introduction, visuals, and real-life examples</p>
+                    
+                    <div class="table-container">
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>Grade</th>
+                                    <th>Subject</th>
+                                    <th>Chapters</th>
+                                    <th>Concept Videos</th>
+                                    <th>Example Videos</th>
+                                    <th>Total Videos</th>
+                                    <th>Practice Sets</th>
+                                    <th>Quizzes</th>
+                                    <th>Total Exercises</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Maths</td>
+                                    <td>14</td>
+                                    <td>42</td>
+                                    <td>28</td>
+                                    <td>70</td>
+                                    <td>14</td>
+                                    <td>14</td>
+                                    <td>28</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Science</td>
+                                    <td>7</td>
+                                    <td>21</td>
+                                    <td>10.5</td>
+                                    <td>31.5</td>
+                                    <td>7</td>
+                                    <td>7</td>
+                                    <td>14</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Maths</td>
+                                    <td>14</td>
+                                    <td>42</td>
+                                    <td>28</td>
+                                    <td>70</td>
+                                    <td>14</td>
+                                    <td>14</td>
+                                    <td>28</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Science</td>
+                                    <td>10</td>
+                                    <td>30</td>
+                                    <td>15</td>
+                                    <td>45</td>
+                                    <td>10</td>
+                                    <td>10</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Maths</td>
+                                    <td>16</td>
+                                    <td>48</td>
+                                    <td>32</td>
+                                    <td>80</td>
+                                    <td>16</td>
+                                    <td>16</td>
+                                    <td>32</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Science</td>
+                                    <td>11</td>
+                                    <td>33</td>
+                                    <td>16.5</td>
+                                    <td>49.5</td>
+                                    <td>11</td>
+                                    <td>11</td>
+                                    <td>22</td>
+                                </tr>
+                                <tr style="background: #e8f5e8; font-weight: bold;">
+                                    <td colspan="2">Total</td>
+                                    <td>72</td>
+                                    <td>216</td>
+                                    <td>130</td>
+                                    <td>346</td>
+                                    <td>72</td>
+                                    <td>72</td>
+                                    <td>144</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grade-band application-band">
+                    <div class="band-title">Application Band (Grades 9-10)</div>
+                    <p style="margin-bottom: 20px; text-align: center; color: #666;">Emphasis on deeper understanding, application-based learning, and exam preparation</p>
+                    
+                    <div class="table-container">
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>Grade</th>
+                                    <th>Subject</th>
+                                    <th>Chapters</th>
+                                    <th>Concept Videos</th>
+                                    <th>Example Videos</th>
+                                    <th>Total Videos</th>
+                                    <th>Practice Sets</th>
+                                    <th>Quizzes</th>
+                                    <th>Total Exercises</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>9</td>
+                                    <td>Maths</td>
+                                    <td>15</td>
+                                    <td>60</td>
+                                    <td>45</td>
+                                    <td>105</td>
+                                    <td>15</td>
+                                    <td>15</td>
+                                    <td>30</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>Science</td>
+                                    <td>8</td>
+                                    <td>32</td>
+                                    <td>16</td>
+                                    <td>48</td>
+                                    <td>8</td>
+                                    <td>8</td>
+                                    <td>16</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Maths</td>
+                                    <td>15</td>
+                                    <td>60</td>
+                                    <td>45</td>
+                                    <td>105</td>
+                                    <td>30*</td>
+                                    <td>15</td>
+                                    <td>45</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Science</td>
+                                    <td>13</td>
+                                    <td>52</td>
+                                    <td>26</td>
+                                    <td>78</td>
+                                    <td>26*</td>
+                                    <td>13</td>
+                                    <td>39</td>
+                                </tr>
+                                <tr style="background: #ffe8e8; font-weight: bold;">
+                                    <td colspan="2">Total</td>
+                                    <td>51</td>
+                                    <td>204</td>
+                                    <td>132</td>
+                                    <td>336</td>
+                                    <td>79</td>
+                                    <td>51</td>
+                                    <td>130</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9em;">*Includes extra materials for board preparation</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
+                <h3 style="text-align: center; color: #2c3e50; font-size: 1.8em; margin-bottom: 20px;">Content Volume by Grade Band</h3>
+                <p style="text-align: center; color: #666; font-size: 1.1em; margin-bottom: 20px;">Content volume varies by grade band, with simpler formats in Grades 6–8 and deeper, exam-focused material in Grades 9–10. Each chapter includes:</p>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="background: #ffffff; margin: 10px 0; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                        <strong style="color: #3498db;">Concept Videos:</strong> 2-4 (depending on the grade band) per chapter explaining key ideas
+                    </li>
+                    <li style="background: #ffffff; margin: 10px 0; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                        <strong style="color: #3498db;">Example Videos:</strong> Problem-solving (Maths) or walkthroughs of diagrams and processes (Science)
+                    </li>
+                    <li style="background: #ffffff; margin: 10px 0; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                        <strong style="color: #3498db;">Practice Sets:</strong> Mix of core and challenge-based tasks
+                    </li>
+                    <li style="background: #ffffff; margin: 10px 0; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                        <strong style="color: #3498db;">Formative Quiz:</strong> One per chapter with varied question types
+                    </li>
+                </ul>
+                <p style="margin-top: 20px; text-align: center; color: #666; font-size: 1em;"><strong style="color: #e74c3c;">Note:</strong> Grade 10 also includes board-oriented exercises (PYQs, MCQs).</p>
+            </div>
+        </div>
+
+        <div id="budget" class="content-section">
+            <h2 class="section-title">Budget Analysis</h2>
+            
+            <div class="budget-summary">
+                <div class="budget-amount">₹19,53,900</div>
+                <div class="budget-label">Total Project Investment</div>
+            </div>
+
+            <div style="margin-bottom: 30px; text-align: center; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                <h3>Cost Per Content Piece</h3>
+                <p style="margin-top: 10px;"><span class="highlight">₹1,800</span> for Grades 6-8 (Foundation Band)</p>
+                <p><span class="highlight">₹2,300</span> for Grades 9-10 (Application Band)</p>
+                <p style="font-size: 0.9em; color: #666; margin-top: 10px;">Includes scripting, editing, voice-over, and review</p>
+            </div>
+
+            <table class="budget-table">
+                <thead>
+                    <tr>
+                        <th>Grade</th>
+                        <th>Subject</th>
+                        <th>Videos + Exercises</th>
+                        <th>Cost per Grade</th>
+                        <th>Grade Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6</td>
+                        <td>Maths</td>
+                        <td>98</td>
+                        <td>₹1,76,400</td>
+                        <td rowspan="2" style="background: #e8f5e8; font-weight: bold;">₹2,58,400</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Science</td>
+                        <td>45.5</td>
+                        <td>₹81,900</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Maths</td>
+                        <td>98</td>
+                        <td>₹1,76,400</td>
+                        <td rowspan="2" style="background: #e8f5e8; font-weight: bold;">₹2,93,400</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Science</td>
+                        <td>65</td>
+                        <td>₹1,17,000</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Maths</td>
+                        <td>112</td>
+                        <td>₹2,01,600</td>
+                        <td rowspan="2" style="background: #e8f5e8; font-weight: bold;">₹3,30,300</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Science</td>
+                        <td>71.5</td>
+                        <td>₹1,28,700</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Maths</td>
+                        <td>135</td>
+                        <td>₹3,10,500</td>
+                        <td rowspan="2" style="background: #ffe8e8; font-weight: bold;">₹4,57,700</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Science</td>
+                        <td>64</td>
+                        <td>₹1,47,200</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Maths</td>
+                        <td>150</td>
+                        <td>₹3,45,000</td>
+                        <td rowspan="2" style="background: #ffe8e8; font-weight: bold;">₹6,14,100</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Science</td>
+                        <td>117</td>
+                        <td>₹2,69,100</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="tradeoffs" class="content-section">
+            <h2 class="section-title">Quality-Cost-Time Tradeoffs</h2>
+            
+            <div class="tradeoffs-grid">
+                <div class="tradeoff-card">
+                    <div class="tradeoff-title">High Quality vs. Faster Delivery</div>
+                    <p>High quality is hard to define, and we can keep refining content endlessly. Perfect content doesn't exist - there's always room for improvement. The focus should be on delivering content faster, as long as it meets key quality metrics like <strong>accuracy, clarity, curriculum alignment, and engagement</strong>.</p>
+                </div>
+                
+                <div class="tradeoff-card">
+                    <div class="tradeoff-title">Internal Team vs. Freelancers</div>
+                    <p>Internal teams and freelancers both have their strengths and weaknesses. <strong>Internal teams</strong> provide better control and steady quality. <strong>Freelancers</strong> help with speed and flexibility. The optimal approach is to have a strong internal team while working with trusted freelancers when needed.</p>
+                </div>
+                
+                <div class="tradeoff-card">
+                    <div class="tradeoff-title">Video-based vs. Other Formats</div>
+                    <p>Video-based teaching is more engaging as it uses both visuals and sound. Studies show it often leads to better understanding than just reading articles. Additionally, once videos are created, it's possible to train a model to transcribe and convert them into articles, making content creation <strong>faster and more versatile</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="timeline" class="content-section">
+            <h2 class="section-title">Project Timeline</h2>
+            
+            <div class="timeline-container">
+                <h3 style="margin-bottom: 20px; font-size: 1.8em;">Estimated Completion Time</h3>
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <span class="stat-number">6.5-7</span>
+                        <span class="stat-label">Months</span>
+                    </div>
+                    <div class="timeline-stat">
+                        <span class="stat-number">4,940</span>
+                        <span class="stat-label">Total Hours Required</span>
+                    </div>
+                    <div class="timeline-stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Content Creators</span>
+                    </div>
+                    <div class="timeline-stat">
+                        <span class="stat-number">8-10</span>
+                        <span class="stat-label">Hours per Day</span>
+                    </div>
+                    <div class="timeline-stat">
+                        <span class="stat-number">20</span>
+                        <span class="stat-label">Working Days/Month</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 15px;">
+                <h3 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">Team Composition & Capacity</h3>
+                <div class="assumptions-grid">
+                    <div class="assumption-card">
+                        <div class="assumption-title">Team Structure</div>
+                        <p><strong>5 Content Creators</strong> (including reviewers)</p>
+                        <p>Mix of subject matter experts, video creators, and quality reviewers</p>
+                    </div>
+                    
+                    <div class="assumption-card">
+                        <div class="assumption-title">Monthly Capacity</div>
+                        <p><strong>8-10 hours per day</strong></p>
+                        <p><strong>20 working days per month</strong></p>
+                        <p>Total: 160-200 hours per person per month</p>
+                    </div>
+                    
+                    <div class="assumption-card">
+                        <div class="assumption-title">Buffer Time</div>
+                        <p>Timeline includes buffer for:</p>
+                        <ul style="margin-left: 20px;">
+                            <li>Team member leaves</li>
+                            <li>Unexpected delays</li>
+                            <li>Quality revisions</li>
+                            <li>Review cycles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="assumption-card">
+                        <div class="assumption-title">Workflow Process</div>
+                        <p>Each content piece goes through:</p>
+                        <ul style="margin-left: 20px;">
+                            <li>Topic research</li>
+                            <li>Content creation</li>
+                            <li>Peer review</li>
+                            <li>Final revisions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h3 style="text-align: center; color: #2c3e50;">Grade-Wise Monthly Target (%)</h3>
+                <div class="table-container">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Month/Grade</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                                <th>9</th>
+                                <th>10</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Jan</td><td>15%</td><td>15%</td><td>15%</td><td>15%</td><td>20%</td></tr>
+                            <tr><td>Feb</td><td>15%</td><td>15%</td><td>15%</td><td>15%</td><td>20%</td></tr>
+                            <tr><td>Mar</td><td>15%</td><td>15%</td><td>15%</td><td>15%</td><td>20%</td></tr>
+                            <tr><td>Apr</td><td>15%</td><td>15%</td><td>15%</td><td>15%</td><td>20%</td></tr>
+                            <tr><td>May</td><td>15%</td><td>15%</td><td>15%</td><td>15%</td><td>20%</td></tr>
+                            <tr><td>Jun</td><td>15%</td><td>15%</td><td>15%</td><td>20%</td><td>-</td></tr>
+                            <tr><td>July</td><td>10%</td><td>10%</td><td>10%</td><td>5%</td><td>-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="stretch" class="content-section">
+            <h2 class="section-title">Cost Saving Strategies</h2>
+            <div class="assumptions-grid">
+                <div class="assumption-card">
+                    <div class="assumption-title">Prioritize High-Impact Grades or Subjects First</div>
+                    <p>Focus on Grades 9–10 or core subjects like Maths and Science to get the most value from limited resources.</p>
+                </div>
+                <div class="assumption-card">
+                    <div class="assumption-title">Use Freely Available Open Educational Resources (OER)</div>
+                    <p>Adapt content from trusted open sources like CK-12 or NCERT instead of building everything from scratch.</p>
+                </div>
+                <div class="assumption-card">
+                    <div class="assumption-title">Use AI Tools to Speed Up Drafting</div>
+                    <p>Automate tasks like practice set creation, quiz generation, and proofreading using AI tools to save time, allowing the team to focus on review and content improvement.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
